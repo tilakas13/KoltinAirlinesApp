@@ -1,1 +1,1 @@
-# KoltinAirlinesApp
+Sample application using Kotlin

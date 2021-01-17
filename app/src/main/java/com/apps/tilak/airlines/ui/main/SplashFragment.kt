@@ -1,14 +1,16 @@
-package com.apps.tilak.koltinairlinesapp.ui.main
+package com.apps.tilak.airlines.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import com.apps.tilak.koltinairlinesapp.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.apps.tilak.airlines.R
 
 class SplashFragment : Fragment() {
 
@@ -27,7 +29,13 @@ class SplashFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
-        // TODO: Use the ViewModel
+
+
+        Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
+            override fun run() {
+                findNavController().navigate(R.id.action_splash_to_list_airline)
+            }
+        },2500)
     }
 
 }

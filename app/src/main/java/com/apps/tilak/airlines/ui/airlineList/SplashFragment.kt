@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.ui.main
+package com.apps.tilak.airlines.ui.airlineList
 
 import android.os.Bundle
 import android.os.Handler

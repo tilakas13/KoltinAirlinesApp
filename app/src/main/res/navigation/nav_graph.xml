@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splash_screen_fragment"
-        android:name="com.apps.tilak.airlines.ui.main.SplashFragment"
+        android:name="com.apps.tilak.airlines.ui.airlineList.SplashFragment"
         android:label="fragment_my_home"
         tools:layout="@layout/splash_fragment">
 
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/airlineListFragment"
-        android:name="com.apps.tilak.airlines.ui.main.AirlineListFragment"
+        android:name="com.apps.tilak.airlines.ui.airlineList.AirlineListFragment"
         android:label="airline_list_fragment"
         tools:layout="@layout/airline_list_fragment" />
 </navigation>

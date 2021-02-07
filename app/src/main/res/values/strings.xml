@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Airlines</string>
+    <string name="empty_description" />
 </resources>

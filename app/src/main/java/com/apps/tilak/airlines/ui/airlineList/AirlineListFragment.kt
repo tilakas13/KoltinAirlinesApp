@@ -34,19 +34,20 @@ class AirlineListFragment : Fragment() {
         adapterAirlines = AirlinesListAdapter(airlinesList)
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
-
         recyclerView.adapter = adapterAirlines
         prepareAirlinesListItems()
     }
 
+    /**
+     * Creating dummy items for listing
+     */
+
     private fun prepareAirlinesListItems() {
-        var airlineItem = AirlineItem()
-        airlineItem.defaultName = "Mad Max: Fury Road"
-        airlinesList.add(airlineItem)
-        airlineItem.defaultName = "Mad Max: Fury Road 2"
-        airlinesList.add(airlineItem)
-        airlineItem . defaultName = "Mad Max: Fury Road 3"
-        airlinesList.add(airlineItem)
+        for (i in 1..100) {
+            var airlineItem = AirlineItem()
+            airlineItem.defaultName = "Mad Max: Fury Road $i"
+            airlinesList.add(airlineItem)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

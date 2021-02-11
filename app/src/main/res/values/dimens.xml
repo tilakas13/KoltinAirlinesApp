@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size_title_list_item">18sp</dimen>
+    <dimen name="elevation_cardview">4dp</dimen>
+    <dimen name="padding_card_item">5dp</dimen>
+    <dimen name="cardCornerRadius">3dp</dimen>
+    <dimen name="margin_item_desc">10dp</dimen>
 </resources>

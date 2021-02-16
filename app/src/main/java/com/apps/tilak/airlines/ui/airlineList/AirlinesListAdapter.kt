@@ -7,8 +7,7 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.R
-import com.apps.tilak.airlines.data.model.AirlineItem
-import com.apps.tilak.airlines.data.model.AirlineModel
+import com.apps.tilak.airlines.model.AirlineItem
 
 public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
@@ -31,5 +30,10 @@ public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun getItemCount(): Int {
         return listAirlines.size
+    }
+
+    fun addUsers(airlinesItems: List<AirlineItem>) {
+        this.listAirlines = airlinesItems
+
     }
 }

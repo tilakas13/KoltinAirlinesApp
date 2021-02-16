@@ -6,11 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.R
-import com.apps.tilak.airlines.data.model.AirlineItem
+import com.apps.tilak.airlines.ViewModelFactory
+import com.apps.tilak.airlines.model.AirlineItem
+import com.apps.tilak.airlines.network.ApiHelper
+import com.apps.tilak.airlines.network.RetrofitBuilder
+import com.apps.tilak.airlines.utils.Status
 
 class AirlineListFragment : Fragment() {
 
@@ -53,8 +58,38 @@ class AirlineListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
-        // TODO: Use the ViewModel
+        // viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
+        viewModel = ViewModelProviders.of(
+            this,
+            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
+        ).get(AirlineListViewModel::class.java)
+        viewModel.getListAirlines().observe(this, Observer {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        //recyclerView.visibility = View.VISIBLE
+                        // progressBar.visibility = View.GONE
+                        resource.data?.let { users -> retrieveList(users) }
+                    }
+                    Status.ERROR -> {
+                        //recyclerView.visibility = View.VISIBLE
+                        // progressBar.visibility = View.GONE
+                        // Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }
+                    Status.LOADING -> {
+                        // progressBar.visibility = View.VISIBLE
+                        // recyclerView.visibility = View.GONE
+                    }
+                }
+            }
+        })
+    }
+
+    private fun retrieveList(listAirlines: List<AirlineItem>) {
+        adapterAirlines.apply {
+            addUsers(listAirlines)
+            notifyDataSetChanged()
+        }
     }
 
 }

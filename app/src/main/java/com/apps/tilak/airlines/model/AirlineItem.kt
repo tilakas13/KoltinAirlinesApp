@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.data.model
+package com.apps.tilak.airlines.model
 
 import com.google.gson.annotations.SerializedName
 

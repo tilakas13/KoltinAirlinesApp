@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.ui.airlineList
+package com.apps.tilak.airlines.view.airlineList
 
 import android.os.Bundle
 import android.view.LayoutInflater

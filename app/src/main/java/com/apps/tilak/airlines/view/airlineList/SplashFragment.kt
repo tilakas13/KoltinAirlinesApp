@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.ui.airlineList
+package com.apps.tilak.airlines.view.airlineList
 
 import android.os.Bundle
 import android.os.Handler
@@ -35,7 +35,7 @@ class SplashFragment : Fragment() {
             override fun run() {
                 findNavController().navigate(R.id.action_splash_to_list_airline)
             }
-        },2500)
+        },1800)
     }
 
 }

@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.apps.tilak.airlines.R
+import com.tilak.apps.airlines.R
+
 
 class SplashFragment : Fragment() {
 

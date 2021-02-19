@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.apps.tilak.airlines"
+        applicationId "com.tilak.apps.airlines"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -78,7 +78,7 @@ dependencies {
     def logging_version = "4.3.1"
     implementation "com.squareup.okhttp3:okhttp:$logging_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
-        //Retrofit
+    //Retrofit
     def version_glide = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$version_glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$version_glide"

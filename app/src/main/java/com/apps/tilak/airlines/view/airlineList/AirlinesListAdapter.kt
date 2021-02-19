@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.R
 import com.apps.tilak.airlines.constants.AppConstants
 import com.apps.tilak.airlines.model.AirlineItem
 import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
+import com.tilak.apps.airlines.R
 
 public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {

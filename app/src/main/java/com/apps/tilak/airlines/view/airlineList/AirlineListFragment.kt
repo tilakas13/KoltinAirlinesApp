@@ -10,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.R
+
 import com.apps.tilak.airlines.ViewModelFactory
 import com.apps.tilak.airlines.model.AirlineItem
 import com.apps.tilak.airlines.network.ApiHelper
 import com.apps.tilak.airlines.network.RetrofitBuilder
 import com.apps.tilak.airlines.utils.Status
+import com.tilak.apps.airlines.R
 
 class AirlineListFragment : Fragment() {
 
@@ -63,7 +64,7 @@ class AirlineListFragment : Fragment() {
             this,
             ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
         ).get(AirlineListViewModel::class.java)
-        viewModel.getListAirlines().observe(this, Observer {
+        viewModel.getListAirlines().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {

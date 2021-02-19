@@ -3,7 +3,7 @@ package com.apps.tilak.airlines.ui.airlineList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.apps.tilak.airlines.utils.Resource
-import com.apps.tilak.repository.AirlinesRepository
+import com.apps.tilak.airlines.repository.AirlinesRepository
 import kotlinx.coroutines.Dispatchers
 
 

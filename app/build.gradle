@@ -35,12 +35,12 @@ android {
         demo {
             dimension "version"
             applicationIdSuffix ".demo"
-            manifestPlaceholders Buildvariant : 'demo'
+            manifestPlaceholders Buildvariant: 'demo'
         }
         full {
             dimension "version"
             applicationIdSuffix ".full"
-            manifestPlaceholders Buildvariant : 'full'
+            manifestPlaceholders Buildvariant: 'full'
         }
     }
     compileOptions {
@@ -71,15 +71,17 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     //Retrofit
-    def version_retrofit ="2.9.0"
+    def version_retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
     def logging_version = "4.3.1"
     implementation "com.squareup.okhttp3:okhttp:$logging_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
-
-
+        //Retrofit
+    def version_glide = "4.12.0"
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$version_glide"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

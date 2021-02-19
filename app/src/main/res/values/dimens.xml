@@ -5,4 +5,5 @@
     <dimen name="padding_card_item">5dp</dimen>
     <dimen name="cardCornerRadius">3dp</dimen>
     <dimen name="margin_item_desc">10dp</dimen>
+    <dimen name="width_image_list">180dp</dimen>
 </resources>

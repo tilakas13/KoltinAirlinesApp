@@ -18,15 +18,24 @@ android {
     }
 
     buildTypes {
-
         debug {
             debuggable true
             minifyEnabled false
         }
-
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def flavorName = variant.flavorName
+            def buildType = variant.buildType.name
+            //customize your app name by using variables
+            outputFileName = "Airlines_${flavorName}_${versionName}_${versionCode}_${buildType}.apk"
         }
     }
 

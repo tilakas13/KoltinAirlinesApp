@@ -3,11 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.airlineList.AirlineListFragment">
+    tools:context="com.apps.tilak.airlines.view.listAirlines.AirlineListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_airlines"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/dimen_progress_bar"
+        android:layout_height="@dimen/dimen_progress_bar"
+        android:indeterminateTint="@color/purple_700"
+        android:layout_centerInParent="true"
+        android:indeterminate="true" />
 
 </RelativeLayout>

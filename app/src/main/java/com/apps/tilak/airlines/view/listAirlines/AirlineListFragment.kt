@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.listAirlines
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,79 +7,65 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
-import com.apps.tilak.airlines.ViewModelFactory
 import com.apps.tilak.airlines.model.AirlineItem
 import com.apps.tilak.airlines.network.ApiHelper
 import com.apps.tilak.airlines.network.RetrofitBuilder
+import com.apps.tilak.airlines.repository.AirlinesRepository
+import com.apps.tilak.airlines.utils.Logger
 import com.apps.tilak.airlines.utils.Status
-import com.tilak.apps.airlines.R
+import com.apps.tilak.airlines.viewmodel.AirlineListViewModel
+import com.tilak.apps.airlines.databinding.AirlineListFragmentBinding
 
 class AirlineListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AirlineListFragment()
+        const val TAG = "AirlineListFragment"
     }
 
+    private lateinit var airlineListBinding: AirlineListFragmentBinding
     private lateinit var adapterAirlines: AirlinesListAdapter
     private lateinit var viewModel: AirlineListViewModel
     private val airlinesList = ArrayList<AirlineItem>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.airline_list_fragment, container, false)
+    ): View {
+        airlineListBinding = AirlineListFragmentBinding.inflate(inflater, container, false)
+        return airlineListBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerview_airlines)
         adapterAirlines = AirlinesListAdapter(airlinesList)
         val layoutManager = LinearLayoutManager(activity)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapterAirlines
-        prepareAirlinesListItems()
+        airlineListBinding.recyclerviewAirlines.layoutManager = layoutManager
+        airlineListBinding.recyclerviewAirlines.adapter = adapterAirlines
     }
 
-    /**
-     * Creating dummy items for listing
-     */
-
-    private fun prepareAirlinesListItems() {
-        for (i in 1..100) {
-            var airlineItem = AirlineItem()
-            airlineItem.defaultName = "Mad Max: Fury Road $i"
-            airlinesList.add(airlineItem)
-        }
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        // viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(AirlineListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
+        viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
+
         viewModel.getListAirlines().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        //recyclerView.visibility = View.VISIBLE
-                        // progressBar.visibility = View.GONE
+                        Logger.printLog(TAG, "data loaded")
+                        airlineListBinding.progressBar.visibility = View.GONE
                         resource.data?.let { users -> retrieveList(users) }
                     }
                     Status.ERROR -> {
-                        //recyclerView.visibility = View.VISIBLE
-                        // progressBar.visibility = View.GONE
-                        // Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        Logger.printLog(TAG, "Status.ERROR ")
+                        airlineListBinding.progressBar.visibility = View.GONE
                     }
                     Status.LOADING -> {
-                        // progressBar.visibility = View.VISIBLE
-                        // recyclerView.visibility = View.GONE
+                        Logger.printLog(TAG, "Status.LOADING")
+                        airlineListBinding.progressBar.visibility = View.VISIBLE
                     }
                 }
             }

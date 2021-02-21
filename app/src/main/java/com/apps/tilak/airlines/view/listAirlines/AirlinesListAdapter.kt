@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.listAirlines
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +13,18 @@ import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
 
-public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
+class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
 
-    var TAG: String = "AirlinesListAdapter"
+    companion object {
+        const val TAG = "AirlinesListAdapter"
+    }
 
     inner class AirlinesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.name_airlines)
         var image: ImageView = view.findViewById(R.id.image_airline)
+        var phoneNumber: TextView = view.findViewById(R.id.phone_number)
+        var siteURL: TextView = view.findViewById(R.id.site_url)
     }
 
     @NonNull
@@ -32,14 +36,15 @@ public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        Logger.printLog(TAG,itemAirlines.logoUrl)
-        holder.title.text = itemAirlines.defaultName
-        Glide
-            .with(holder.image.context)
+        Logger.printLog(TAG, "in onBindViewHolder $itemAirlines.name")
+        holder.title.text = itemAirlines.name
+        holder.phoneNumber.text = itemAirlines.phoneNumber
+        holder.siteURL.text = itemAirlines.siteUrl
+        Glide.with(holder.image.context)
             .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
             .centerCrop()
             .placeholder(R.drawable.default_airline)
-            .into(holder.image);
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int {
@@ -47,7 +52,7 @@ public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     }
 
     fun addUsers(airlinesItems: List<AirlineItem>) {
+        Logger.printLog(TAG, "in addUsers")
         this.listAirlines = airlinesItems
-
     }
 }

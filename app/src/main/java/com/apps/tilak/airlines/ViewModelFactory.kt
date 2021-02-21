@@ -3,7 +3,7 @@ package com.apps.tilak.airlines
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.apps.tilak.airlines.network.ApiHelper
-import com.apps.tilak.airlines.view.airlineList.AirlineListViewModel
+import com.apps.tilak.airlines.view.listAirlines.AirlineListViewModel
 import com.apps.tilak.airlines.repository.AirlinesRepository
 
 class ViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {

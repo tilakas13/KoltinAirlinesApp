@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.splash
 
 import androidx.lifecycle.ViewModel
 

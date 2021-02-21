@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.listAirlines
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

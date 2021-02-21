@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.splash
 
 import android.os.Bundle
 import android.os.Handler

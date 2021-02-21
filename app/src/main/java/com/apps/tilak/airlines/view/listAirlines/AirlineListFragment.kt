@@ -1,11 +1,10 @@
-package com.apps.tilak.airlines.view.airlineList
+package com.apps.tilak.airlines.view.listAirlines
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment

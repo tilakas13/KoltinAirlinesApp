@@ -16,11 +16,13 @@ import com.tilak.apps.airlines.R
 public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
 
-    var TAG: String = "AirlinesListAdapter"
+    private var TAG: String = "AirlinesListAdapter"
 
     inner class AirlinesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title: TextView = view.findViewById(R.id.name_airlines)
         var image: ImageView = view.findViewById(R.id.image_airline)
+        var phoneNumber: TextView = view.findViewById(R.id.phone_number)
+        var siteURL: TextView = view.findViewById(R.id.site_url)
     }
 
     @NonNull
@@ -32,8 +34,10 @@ public class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        Logger.printLog(TAG,itemAirlines.logoUrl)
-        holder.title.text = itemAirlines.defaultName
+        Logger.printLog(TAG, itemAirlines.logoUrl)
+        holder.title.text = itemAirlines.name + "  - " + itemAirlines.code
+        holder.phoneNumber.text = itemAirlines.phoneNumber
+        holder.siteURL.text = itemAirlines.siteUrl
         Glide
             .with(holder.image.context)
             .load(AppConstants.BASE_URL + itemAirlines.logoUrl)

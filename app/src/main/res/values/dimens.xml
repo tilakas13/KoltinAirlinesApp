@@ -7,6 +7,5 @@
     <dimen name="cardCornerRadius">5dp</dimen>
     <dimen name="margin_item_desc">10dp</dimen>
     <dimen name="width_image_list">150dp</dimen>
-    <dimen name="dimen_progress_bar">100dp</dimen>
-    <dimen name="text_size_loading_indicator">16sp</dimen>
+    <dimen name="dimen_progress_bar">50dp</dimen>
 </resources>

@@ -9,20 +9,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.ViewModelFactory
 import com.apps.tilak.airlines.model.AirlineItem
 import com.apps.tilak.airlines.network.ApiHelper
 import com.apps.tilak.airlines.network.RetrofitBuilder
+import com.apps.tilak.airlines.repository.AirlinesRepository
+import com.apps.tilak.airlines.utils.Logger
 import com.apps.tilak.airlines.utils.Status
 import com.tilak.apps.airlines.R
 
 class AirlineListFragment : Fragment() {
-
     companion object {
-        fun newInstance() = AirlineListFragment()
+        const val TAG = "AirlineListFragment"
     }
 
     private lateinit var progressBarLoading: ProgressBar;
@@ -51,30 +51,24 @@ class AirlineListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        viewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
-        ).get(AirlineListViewModel::class.java)
-        progressBarLoading.visibility = View.VISIBLE
+        viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
+        viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
+
         viewModel.getListAirlines().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
+                        Logger.printLog(TAG, "data loaded")
                         progressBarLoading.visibility = View.GONE
-                        //recyclerView.visibility = View.VISIBLE
-                        // progressBar.visibility = View.GONE
                         resource.data?.let { users -> retrieveList(users) }
                     }
                     Status.ERROR -> {
-                      //  progressBarLoading.isVisible = false
-                        //recyclerView.visibility = View.VISIBLE
-                        // progressBar.visibility = View.GONE
-                        // Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                        Logger.printLog(TAG, "Status.ERROR ")
+                        progressBarLoading.visibility = View.GONE
                     }
                     Status.LOADING -> {
-                        progressBarLoading.isVisible = false
-                        // progressBar.visibility = View.VISIBLE
-                        // recyclerView.visibility = View.GONE
+                        Logger.printLog(TAG, "Status.LOADING")
+                        progressBarLoading.visibility = View.VISIBLE
                     }
                 }
             }

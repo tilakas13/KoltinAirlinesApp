@@ -3,6 +3,7 @@ package com.apps.tilak.airlines.view.listAirlines
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.constants.AppConstants
 import com.apps.tilak.airlines.model.AirlineItem
@@ -36,6 +37,10 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
             .centerCrop()
             .placeholder(R.drawable.default_airline)
             .into(holder.binding.imageAirline)
+        holder.binding.imageAirline.setOnClickListener { itemView ->
+            itemView.findNavController().navigate(R.id.action_item_click_to_detailAirlineFragment)
+        }
+
     }
 
     override fun getItemCount(): Int {

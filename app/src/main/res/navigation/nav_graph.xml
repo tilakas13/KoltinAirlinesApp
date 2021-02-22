@@ -24,5 +24,14 @@
         android:id="@+id/airlineListFragment"
         android:name="com.apps.tilak.airlines.view.listAirlines.AirlineListFragment"
         android:label="airline_list_fragment"
-        tools:layout="@layout/airline_list_fragment" />
+        tools:layout="@layout/airline_list_fragment">
+        <action
+            android:id="@+id/action_item_click_to_detailAirlineFragment"
+            app:destination="@id/detailAirlineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailAirlineFragment"
+        android:name="com.apps.tilak.airlines.view.detail.DetailAirlineFragment"
+        android:label="fragment_detail_airline"
+        tools:layout="@layout/fragment_detail_airline" />
 </navigation>

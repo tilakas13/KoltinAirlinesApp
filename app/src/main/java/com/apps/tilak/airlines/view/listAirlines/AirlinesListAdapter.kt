@@ -1,10 +1,7 @@
 package com.apps.tilak.airlines.view.listAirlines
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.constants.AppConstants
@@ -12,6 +9,7 @@ import com.apps.tilak.airlines.model.AirlineItem
 import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
+import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
 
 class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
@@ -20,31 +18,24 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
         const val TAG = "AirlinesListAdapter"
     }
 
-    inner class AirlinesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.name_airlines)
-        var image: ImageView = view.findViewById(R.id.image_airline)
-        var phoneNumber: TextView = view.findViewById(R.id.phone_number)
-        var siteURL: TextView = view.findViewById(R.id.site_url)
-    }
-
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirlinesViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list_airline, parent, false)
-        return AirlinesViewHolder(itemView)
+        val binding =
+            ItemListAirlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AirlinesViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
         Logger.printLog(TAG, "in onBindViewHolder $itemAirlines.name")
-        holder.title.text = itemAirlines.name
-        holder.phoneNumber.text = itemAirlines.phoneNumber
-        holder.siteURL.text = itemAirlines.siteUrl
-        Glide.with(holder.image.context)
+        holder.binding.nameAirlines.text = itemAirlines.defaultName
+        holder.binding.phoneNumber.text = itemAirlines.phoneNumber
+        holder.binding.siteUrl.text = itemAirlines.siteUrl
+        Glide.with(holder.binding.imageAirline.context)
             .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
             .centerCrop()
             .placeholder(R.drawable.default_airline)
-            .into(holder.image)
+            .into(holder.binding.imageAirline)
     }
 
     override fun getItemCount(): Int {
@@ -55,4 +46,7 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
         Logger.printLog(TAG, "in addUsers")
         this.listAirlines = airlinesItems
     }
+
+    inner class AirlinesViewHolder(var binding: ItemListAirlineBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }

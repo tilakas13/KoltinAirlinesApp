@@ -2,7 +2,7 @@ package com.apps.tilak.airlines.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.apps.tilak.airlines.repository.AirlinesRepository
+import com.apps.tilak.airlines.data.repository.AirlinesRepository
 import com.apps.tilak.airlines.utils.Resource
 import kotlinx.coroutines.Dispatchers
 

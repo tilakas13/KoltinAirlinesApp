@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.repository
+package com.apps.tilak.airlines.data.repository
 
 import com.apps.tilak.airlines.network.ApiHelper
 

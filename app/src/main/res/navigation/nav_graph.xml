@@ -33,5 +33,9 @@
         android:id="@+id/detailAirlineFragment"
         android:name="com.apps.tilak.airlines.view.detail.DetailAirlineFragment"
         android:label="fragment_detail_airline"
-        tools:layout="@layout/fragment_detail_airline" />
+        tools:layout="@layout/fragment_detail_airline">
+        <argument
+            android:name="itemAirlines"
+            app:argType="com.apps.tilak.airlines.data.model.AirlineItem" />
+    </fragment>
 </navigation>

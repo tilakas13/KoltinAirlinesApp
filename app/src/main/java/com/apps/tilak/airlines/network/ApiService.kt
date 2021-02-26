@@ -1,6 +1,6 @@
 package com.apps.tilak.airlines.network
 
-import com.apps.tilak.airlines.model.AirlineItem
+import com.apps.tilak.airlines.data.model.AirlineItem
 import retrofit2.http.GET
 
 interface ApiService {

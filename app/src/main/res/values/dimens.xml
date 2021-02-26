@@ -8,4 +8,6 @@
     <dimen name="margin_item_desc">10dp</dimen>
     <dimen name="width_image_list">150dp</dimen>
     <dimen name="dimen_progress_bar">50dp</dimen>
+    <dimen name="spacing_view">20dp</dimen>
+    <dimen name="dimen_detail_image">200dp</dimen>
 </resources>

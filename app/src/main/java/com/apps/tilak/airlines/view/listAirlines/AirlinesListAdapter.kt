@@ -6,7 +6,7 @@ import androidx.annotation.NonNull
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.constants.AppConstants
-import com.apps.tilak.airlines.model.AirlineItem
+import com.apps.tilak.airlines.data.model.AirlineItem
 import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
@@ -38,7 +38,9 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
             .placeholder(R.drawable.default_airline)
             .into(holder.binding.imageAirline)
         holder.binding.imageAirline.setOnClickListener { itemView ->
-            itemView.findNavController().navigate(R.id.action_item_click_to_detailAirlineFragment)
+            var actionDetailView =
+                AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines);
+            itemView.findNavController().navigate(actionDetailView)
         }
 
     }

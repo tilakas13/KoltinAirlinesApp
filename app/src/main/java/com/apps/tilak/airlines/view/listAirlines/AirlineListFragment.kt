@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.apps.tilak.airlines.model.AirlineItem
+import com.apps.tilak.airlines.data.model.AirlineItem
 import com.apps.tilak.airlines.network.ApiHelper
 import com.apps.tilak.airlines.network.RetrofitBuilder
-import com.apps.tilak.airlines.repository.AirlinesRepository
+import com.apps.tilak.airlines.data.repository.AirlinesRepository
 import com.apps.tilak.airlines.utils.Logger
 import com.apps.tilak.airlines.utils.Status
 import com.apps.tilak.airlines.viewmodel.AirlineListViewModel

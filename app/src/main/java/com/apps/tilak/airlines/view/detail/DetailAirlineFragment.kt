@@ -33,7 +33,7 @@ class DetailAirlineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var airlineItem = navigationArgs.itemAirlines;
+        var airlineItem = navigationArgs.argAirlineItem;
         Glide.with(requireActivity())
             .load(AppConstants.BASE_URL + airlineItem.logoUrl)
             .centerCrop()

@@ -15,10 +15,6 @@ import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
 class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
 
-    companion object {
-        const val TAG = "AirlinesListAdapter"
-    }
-
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirlinesViewHolder {
         val binding =
@@ -28,17 +24,15 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        Logger.printLog(TAG, "in onBindViewHolder $itemAirlines.name")
+        Logger.printLog(AppConstants.LOG_TAG, "in onBindViewHolder $itemAirlines.name")
         holder.binding.nameAirlines.text = itemAirlines.defaultName
-        holder.binding.phoneNumber.text = itemAirlines.phoneNumber
-        holder.binding.siteUrl.text = itemAirlines.siteUrl
         Glide.with(holder.binding.imageAirline.context)
             .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
             .centerCrop()
             .placeholder(R.drawable.default_airline)
             .into(holder.binding.imageAirline)
-        holder.binding.imageAirline.setOnClickListener { itemView ->
-            var actionDetailView =
+        holder.binding.containerItemAirline.setOnClickListener { itemView ->
+            val actionDetailView =
                 AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines);
             itemView.findNavController().navigate(actionDetailView)
         }
@@ -49,8 +43,8 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
         return listAirlines.size
     }
 
-    fun addUsers(airlinesItems: List<AirlineItem>) {
-        Logger.printLog(TAG, "in addUsers")
+    fun addAirlineItems(airlinesItems: List<AirlineItem>) {
+        Logger.printLog(AppConstants.LOG_TAG, "in addAirlineItems")
         this.listAirlines = airlinesItems
     }
 

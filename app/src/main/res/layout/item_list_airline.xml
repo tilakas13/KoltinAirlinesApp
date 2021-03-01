@@ -8,14 +8,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/elevation_cardview"
+        android:elevation="@dimen/elevation_card_view"
         app:cardCornerRadius="@dimen/cardCornerRadius"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/container_item_airline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/image_airline"
@@ -27,37 +27,19 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/default_airline" />
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/name_airlines"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/image_airline"
+                android:text="@string/app_name"
+                android:textSize="@dimen/text_size_title_list_item" />
 
-                <TextView
-                    android:id="@+id/name_airlines"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textSize="@dimen/text_size_title_list_item" />
 
-                <TextView
-                    android:id="@+id/phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:autoLink="all"
-                    android:textSize="@dimen/text_size_desc_list_item" />
-
-                <TextView
-                    android:id="@+id/site_url"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:autoLink="web"
-                    android:textSize="@dimen/text_size_desc_list_item" />
-
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

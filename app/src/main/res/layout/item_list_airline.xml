@@ -32,9 +32,10 @@
                 android:id="@+id/name_airlines"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_centerVertical="true"
+                android:layout_margin="10dp"
                 android:layout_toEndOf="@id/image_airline"
+                android:fontFamily="@font/advent_pro"
                 android:text="@string/app_name"
                 android:textSize="@dimen/text_size_title_list_item" />
 

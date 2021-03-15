@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_title_list_item">18sp</dimen>
+    <dimen name="text_size_desc_list_item">14sp</dimen>
+    <dimen name="elevation_card_view">5dp</dimen>
+    <dimen name="padding_card_item">10dp</dimen>
+    <dimen name="cardCornerRadius">5dp</dimen>
+    <dimen name="margin_item_desc">10dp</dimen>
+    <dimen name="width_image_list">80dp</dimen>
+    <dimen name="dimen_progress_bar">50dp</dimen>
+    <dimen name="spacing_view">20dp</dimen>
+    <dimen name="dimen_detail_image">200dp</dimen>
+</resources>

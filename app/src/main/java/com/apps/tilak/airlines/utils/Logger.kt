@@ -1,10 +1,15 @@
 package com.apps.tilak.airlines.utils
 
 import android.util.Log
+import com.tilak.apps.airlines.BuildConfig
+import javax.inject.Inject
 
-object Logger {
+class Logger
+@Inject constructor() {
 
     fun printLog(tagName: String, message: String? = "NULL value") {
-        Log.d(tagName, message + "")
+        if (BuildConfig.DEBUG) {
+            Log.d(tagName, message + "")
+        }
     }
 }

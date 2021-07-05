@@ -1,15 +1,19 @@
-package com.apps.tilak.airlines.viewmodel
+package com.apps.tilak.airlines.view.listAirlines
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.apps.tilak.airlines.data.repository.AirlinesRepository
 import com.apps.tilak.airlines.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
+@HiltViewModel
+class AirlineListViewModel
+@Inject
+constructor() : ViewModel() {
 
-class AirlineListViewModel() : ViewModel() {
-
-   private lateinit var airlineRepository: AirlinesRepository
+    private lateinit var airlineRepository: AirlinesRepository
 
     fun setRepository(airlinesRepository: AirlinesRepository) {
         this.airlineRepository = airlinesRepository
@@ -23,8 +27,6 @@ class AirlineListViewModel() : ViewModel() {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
         }
     }
-
-
 
 
 }

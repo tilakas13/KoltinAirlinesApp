@@ -8,22 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.apps.tilak.airlines.utils.Logger
-import com.apps.tilak.airlines.viewmodel.SplashViewModel
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.SplashFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
+
+    @Inject
+    lateinit var logger: Logger
 
     companion object {
         var TAG = "SplashFragment"
     }
 
     private var splashScreenBinding: SplashFragmentBinding? = null
-    private lateinit var viewModel: SplashViewModel
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,17 +39,18 @@ class SplashFragment : Fragment() {
         return splashScreenBinding!!.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
             override fun run() {
-                Logger.printLog(TAG, "Splash time out")
+                logger.printLog(TAG, "Splash time out")
                 findNavController().navigate(R.id.action_splash_to_list_airline)
             }
         }, 1500)
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

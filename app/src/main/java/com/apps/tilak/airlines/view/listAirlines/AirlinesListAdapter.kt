@@ -11,6 +11,10 @@ import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Inject
+
+
 
 class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
@@ -24,7 +28,6 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        Logger.printLog(AppConstants.LOG_TAG, "in onBindViewHolder $itemAirlines.name")
         holder.binding.nameAirlines.text = itemAirlines.defaultName
         Glide.with(holder.binding.imageAirline.context)
             .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
@@ -33,7 +36,7 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
             .into(holder.binding.imageAirline)
         holder.binding.containerItemAirline.setOnClickListener { itemView ->
             val actionDetailView =
-                AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines);
+                AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines)
             itemView.findNavController().navigate(actionDetailView)
         }
 
@@ -44,7 +47,6 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
     }
 
     fun addAirlineItems(airlinesItems: List<AirlineItem>) {
-        Logger.printLog(AppConstants.LOG_TAG, "in addAirlineItems")
         this.listAirlines = airlinesItems
     }
 

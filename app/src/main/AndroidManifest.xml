@@ -12,6 +12,7 @@
         android:label="Airlines ${Buildvariant}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.apps.tilak.airlines.AirlinesApplication"
         android:theme="@style/Theme.KoltinAirlinesApp">
         <activity android:name="com.apps.tilak.airlines.MainActivity">
             <intent-filter>

@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apps.tilak.airlines.constants.AppConstants.LOG_TAG
 import com.apps.tilak.airlines.data.model.AirlineItem
@@ -16,15 +16,21 @@ import com.apps.tilak.airlines.network.ApiHelper
 import com.apps.tilak.airlines.network.RetrofitBuilder
 import com.apps.tilak.airlines.utils.Logger
 import com.apps.tilak.airlines.utils.Status
-import com.apps.tilak.airlines.viewmodel.AirlineListViewModel
 import com.tilak.apps.airlines.databinding.AirlineListFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AirlineListFragment : Fragment() {
 
     private lateinit var airlineListBinding: AirlineListFragmentBinding
     private lateinit var adapterAirlines: AirlinesListAdapter
-    private lateinit var viewModel: AirlineListViewModel
+    private val viewModel: AirlineListViewModel by viewModels()
     private val airlinesList = ArrayList<AirlineItem>()
+
+    @Inject
+    lateinit var logger: Logger
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,35 +45,33 @@ class AirlineListFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         airlineListBinding.recyclerviewAirlines.layoutManager = layoutManager
         airlineListBinding.recyclerviewAirlines.adapter = adapterAirlines
-    }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
+        // viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
         viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
 
         viewModel.getListAirlines().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        Logger.printLog(LOG_TAG, "data loaded")
+                        logger.printLog(LOG_TAG, "data loaded")
                         airlineListBinding.progressBar.visibility = View.GONE
                         resource.data?.let { users -> retrieveList(users) }
                     }
                     Status.ERROR -> {
-                        Logger.printLog(LOG_TAG, "Status.ERROR ")
+                        logger.printLog(LOG_TAG, "Status.ERROR ")
                         airlineListBinding.progressBar.visibility = View.GONE
                     }
                     Status.LOADING -> {
-                        Logger.printLog(LOG_TAG, "Status.LOADING")
+                        logger.printLog(LOG_TAG, "Status.LOADING")
                         airlineListBinding.progressBar.visibility = View.VISIBLE
                     }
                 }
             }
         })
     }
+
+
+
 
     private fun retrieveList(listAirlines: List<AirlineItem>) {
         adapterAirlines.apply {

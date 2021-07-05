@@ -11,15 +11,21 @@ import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.FragmentDetailAirlineBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class DetailAirlineFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailAirlineBinding
     private val navigationArgs: DetailAirlineFragmentArgs by navArgs()
 
+    @Inject
+    lateinit var logger: Logger
+
     companion object {
-        var TAG = "AirlineListFragmentBinding"
+        const val TAG = "AirlineListFragmentBinding"
     }
 
     override fun onCreateView(
@@ -33,7 +39,7 @@ class DetailAirlineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var airlineItem = navigationArgs.argAirlineItem;
+        val airlineItem = navigationArgs.argAirlineItem;
         Glide.with(requireActivity())
             .load(AppConstants.BASE_URL + airlineItem.logoUrl)
             .centerCrop()
@@ -47,7 +53,7 @@ class DetailAirlineFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Logger.printLog(TAG, "in onDestroy")
+        logger.printLog(TAG, "in onDestroy")
     }
 
 

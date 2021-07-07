@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.apps.tilak.airlines.constants.AppConstants
 import com.apps.tilak.airlines.utils.Logger
-import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.FragmentDetailAirlineBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,28 +32,19 @@ class DetailAirlineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDetailAirlineBinding.inflate(inflater, container, false);
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_airline, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val airlineItem = navigationArgs.argAirlineItem;
-        Glide.with(requireActivity())
-            .load(AppConstants.BASE_URL + airlineItem.logoUrl)
-            .centerCrop()
-            .placeholder(R.drawable.default_airline)
-            .into(binding.imageAirline)
-
-        binding.nameAirline.text = airlineItem.airlinesName
-        binding.siteurlAirline.text = airlineItem.siteUrl
-
+        val airlineItem = navigationArgs.argAirlineItem
+        binding.detailAirlines = airlineItem
     }
 
     override fun onDestroy() {
         super.onDestroy()
         logger.printLog(TAG, "in onDestroy")
     }
-
-
 }

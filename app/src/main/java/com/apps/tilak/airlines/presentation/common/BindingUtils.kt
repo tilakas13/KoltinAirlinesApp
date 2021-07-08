@@ -1,9 +1,9 @@
-package com.apps.tilak.airlines.utils
+package com.apps.tilak.airlines.presentation.common
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.apps.tilak.airlines.constants.AppConstants
+import com.apps.tilak.airlines.common.AppConstants
 import com.bumptech.glide.Glide
 
 object BindingUtils {

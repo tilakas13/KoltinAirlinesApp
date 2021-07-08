@@ -1,6 +1,6 @@
-package com.apps.tilak.airlines.network
+package com.apps.tilak.airlines.data.network
 
-import com.apps.tilak.airlines.constants.AppConstants
+import com.apps.tilak.airlines.common.AppConstants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

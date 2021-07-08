@@ -1,13 +1,13 @@
-package com.apps.tilak.airlines
+package com.apps.tilak.airlines.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.apps.tilak.airlines.base.BaseActivity
 import com.tilak.apps.airlines.R
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

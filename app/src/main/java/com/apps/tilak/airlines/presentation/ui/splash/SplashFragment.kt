@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.splash
+package com.apps.tilak.airlines.presentation.ui.splash
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.apps.tilak.airlines.utils.Logger
+import com.apps.tilak.airlines.base.BaseFragment
+import com.apps.tilak.airlines.presentation.common.Logger
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
 
     @Inject
     lateinit var logger: Logger

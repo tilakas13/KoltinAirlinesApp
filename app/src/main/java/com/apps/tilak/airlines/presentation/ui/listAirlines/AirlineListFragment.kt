@@ -1,27 +1,26 @@
-package com.apps.tilak.airlines.view.listAirlines
+package com.apps.tilak.airlines.presentation.ui.listAirlines
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.apps.tilak.airlines.constants.AppConstants.LOG_TAG
+import com.apps.tilak.airlines.base.BaseFragment
+import com.apps.tilak.airlines.common.AppConstants.LOG_TAG
 import com.apps.tilak.airlines.data.model.AirlineItem
+import com.apps.tilak.airlines.data.network.ApiHelper
+import com.apps.tilak.airlines.data.network.RetrofitBuilder
 import com.apps.tilak.airlines.data.repository.AirlinesRepository
-import com.apps.tilak.airlines.network.ApiHelper
-import com.apps.tilak.airlines.network.RetrofitBuilder
-import com.apps.tilak.airlines.utils.Logger
-import com.apps.tilak.airlines.utils.Status
+import com.apps.tilak.airlines.presentation.common.Logger
+import com.apps.tilak.airlines.presentation.ui.utils.Status
 import com.tilak.apps.airlines.databinding.AirlineListFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AirlineListFragment : Fragment() {
+class AirlineListFragment : BaseFragment() {
 
     private lateinit var airlineListBinding: AirlineListFragmentBinding
     private lateinit var adapterAirlines: AirlinesListAdapter
@@ -49,7 +48,7 @@ class AirlineListFragment : Fragment() {
         // viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
         viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
 
-        viewModel.getListAirlines().observe(viewLifecycleOwner, Observer {
+        viewModel.getListAirlines().observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {

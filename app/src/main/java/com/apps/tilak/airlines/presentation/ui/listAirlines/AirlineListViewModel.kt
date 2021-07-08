@@ -1,9 +1,9 @@
-package com.apps.tilak.airlines.view.listAirlines
+package com.apps.tilak.airlines.presentation.ui.listAirlines
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.apps.tilak.airlines.data.repository.AirlinesRepository
-import com.apps.tilak.airlines.utils.Resource
+import com.apps.tilak.airlines.presentation.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject

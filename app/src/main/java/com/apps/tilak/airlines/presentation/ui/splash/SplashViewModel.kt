@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.view.splash
+package com.apps.tilak.airlines.presentation.ui.splash
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

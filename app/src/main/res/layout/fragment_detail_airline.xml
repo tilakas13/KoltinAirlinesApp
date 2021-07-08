@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/spacing_view"
-        tools:context="com.apps.tilak.airlines.view.detail.DetailAirlineFragment">
+        tools:context="com.apps.tilak.airlines.presentation.ui.detail.DetailAirlineFragment">
 
 
         <ImageView

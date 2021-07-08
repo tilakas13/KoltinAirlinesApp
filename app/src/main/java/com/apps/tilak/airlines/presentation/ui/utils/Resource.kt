@@ -1,7 +1,7 @@
-package com.apps.tilak.airlines.utils
-import com.apps.tilak.airlines.utils.Status.ERROR
-import com.apps.tilak.airlines.utils.Status.LOADING
-import com.apps.tilak.airlines.utils.Status.SUCCESS
+package com.apps.tilak.airlines.presentation.ui.utils
+import com.apps.tilak.airlines.presentation.ui.utils.Status.ERROR
+import com.apps.tilak.airlines.presentation.ui.utils.Status.LOADING
+import com.apps.tilak.airlines.presentation.ui.utils.Status.SUCCESS
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     companion object {

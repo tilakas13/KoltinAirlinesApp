@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines
+package com.apps.tilak.airlines.presentation.ui
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

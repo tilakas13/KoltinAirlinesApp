@@ -1,19 +1,15 @@
-package com.apps.tilak.airlines.view.listAirlines
+package com.apps.tilak.airlines.presentation.ui.listAirlines
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.constants.AppConstants
+import com.apps.tilak.airlines.common.AppConstants
 import com.apps.tilak.airlines.data.model.AirlineItem
-import com.apps.tilak.airlines.utils.Logger
 import com.bumptech.glide.Glide
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
-import dagger.hilt.android.scopes.ActivityScoped
-import javax.inject.Inject
-
 
 
 class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :

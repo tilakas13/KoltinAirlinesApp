@@ -1,6 +1,6 @@
 package com.apps.tilak.airlines.di
 
-import com.apps.tilak.airlines.utils.Logger
+import com.apps.tilak.airlines.presentation.common.Logger
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,7 +1,7 @@
 package com.apps.tilak.airlines.presentation.ui.listAirlines
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.apps.tilak.airlines.base.BaseViewModel
 import com.apps.tilak.airlines.data.repository.AirlinesRepository
 import com.apps.tilak.airlines.presentation.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AirlineListViewModel
 @Inject
-constructor() : ViewModel() {
+constructor() : BaseViewModel() {
 
     private lateinit var airlineRepository: AirlinesRepository
 

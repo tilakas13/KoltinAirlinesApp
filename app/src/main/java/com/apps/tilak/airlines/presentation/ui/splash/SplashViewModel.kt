@@ -1,6 +1,6 @@
 package com.apps.tilak.airlines.presentation.ui.splash
 
-import androidx.lifecycle.ViewModel
+import com.apps.tilak.airlines.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -8,6 +8,6 @@ import javax.inject.Inject
 class SplashViewModel
 
     @Inject
-    constructor(): ViewModel() {
+    constructor(): BaseViewModel() {
     // TODO: Implement the ViewModel
 }

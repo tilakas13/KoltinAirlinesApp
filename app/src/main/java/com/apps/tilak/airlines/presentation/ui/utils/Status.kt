@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.utils
+package com.apps.tilak.airlines.presentation.ui.utils
 
 enum class Status {
     SUCCESS,

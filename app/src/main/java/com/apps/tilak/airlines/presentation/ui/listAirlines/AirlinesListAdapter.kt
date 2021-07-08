@@ -1,23 +1,20 @@
-package com.apps.tilak.airlines.view.listAirlines
+package com.apps.tilak.airlines.presentation.ui.listAirlines
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.constants.AppConstants
 import com.apps.tilak.airlines.data.model.AirlineItem
-import com.apps.tilak.airlines.utils.Logger
-import com.bumptech.glide.Glide
-import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
-import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
-
-class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
+@Singleton
+class AirlinesListAdapter
+@Inject constructor() :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
+    private lateinit var listAirlines: List<AirlineItem>
 
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirlinesViewHolder {
@@ -28,12 +25,7 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        holder.binding.nameAirlines.text = itemAirlines.defaultName
-        Glide.with(holder.binding.imageAirline.context)
-            .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
-            .centerCrop()
-            .placeholder(R.drawable.default_airline)
-            .into(holder.binding.imageAirline)
+        holder.binding.listItemAirlines = itemAirlines
         holder.binding.containerItemAirline.setOnClickListener { itemView ->
             val actionDetailView =
                 AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines)

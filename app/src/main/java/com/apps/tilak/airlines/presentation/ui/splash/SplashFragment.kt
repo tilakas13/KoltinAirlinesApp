@@ -1,16 +1,14 @@
-package com.apps.tilak.airlines.view.splash
+package com.apps.tilak.airlines.presentation.ui.splash
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.apps.tilak.airlines.utils.Logger
+import com.apps.tilak.airlines.base.BaseFragment
+import com.apps.tilak.airlines.presentation.common.Logger
 import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,15 +16,10 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
 
     @Inject
     lateinit var logger: Logger
-
-    companion object {
-        var TAG = "SplashFragment"
-    }
-
     private var splashScreenBinding: SplashFragmentBinding? = null
     private val viewModel: SplashViewModel by viewModels()
 
@@ -41,20 +34,22 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        Handler(Looper.getMainLooper()).postDelayed(object : Runnable {
-            override fun run() {
-                logger.printLog(TAG, "Splash time out")
-                findNavController().navigate(R.id.action_splash_to_list_airline)
+        viewModel.liveData.observe(viewLifecycleOwner, {
+            when (it) {
+                is SplashViewModel.SplashState.ListAirlines -> {
+                    logger.printLog(TAG, "Splash time out")
+                    findNavController().navigate(R.id.action_splash_to_list_airline)
+                }
             }
-        }, 1500)
+        })
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         splashScreenBinding = null
     }
 
+    companion object {
+        var TAG = "SplashFragment"
+    }
 }

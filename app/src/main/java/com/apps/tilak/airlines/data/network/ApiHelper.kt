@@ -1,4 +1,4 @@
-package com.apps.tilak.airlines.network
+package com.apps.tilak.airlines.data.network
 
 class ApiHelper(private val apiService: ApiService) {
 

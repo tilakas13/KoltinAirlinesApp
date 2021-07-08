@@ -7,10 +7,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.apps.tilak.airlines.data.model.AirlineItem
 import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
+@Singleton
+class AirlinesListAdapter
+@Inject constructor() :
     RecyclerView.Adapter<AirlinesListAdapter.AirlinesViewHolder>() {
+    private lateinit var listAirlines: List<AirlineItem>
 
     @NonNull
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AirlinesViewHolder {

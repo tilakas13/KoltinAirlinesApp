@@ -23,7 +23,9 @@ import javax.inject.Inject
 class AirlineListFragment : BaseFragment() {
 
     private lateinit var airlineListBinding: AirlineListFragmentBinding
-    private lateinit var adapterAirlines: AirlinesListAdapter
+
+    @Inject
+    lateinit var adapterAirlines: AirlinesListAdapter
     private val viewModel: AirlineListViewModel by viewModels()
     private val airlinesList = ArrayList<AirlineItem>()
 
@@ -34,18 +36,21 @@ class AirlineListFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        airlineListBinding = AirlineListFragmentBinding.inflate(inflater, container, false)
+        airlineListBinding = AirlineListFragmentBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return airlineListBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterAirlines = AirlinesListAdapter(airlinesList)
+        retrieveList(airlinesList)
         val layoutManager = LinearLayoutManager(activity)
         airlineListBinding.recyclerviewAirlines.layoutManager = layoutManager
         airlineListBinding.recyclerviewAirlines.adapter = adapterAirlines
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        // viewModel = ViewModelProvider(this).get(AirlineListViewModel::class.java)
         viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
 
         viewModel.getListAirlines().observe(viewLifecycleOwner, {
@@ -68,8 +73,6 @@ class AirlineListFragment : BaseFragment() {
             }
         })
     }
-
-
 
 
     private fun retrieveList(listAirlines: List<AirlineItem>) {

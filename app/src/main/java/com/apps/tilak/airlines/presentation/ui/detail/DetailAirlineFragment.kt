@@ -31,9 +31,13 @@ class DetailAirlineFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_detail_airline, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_detail_airline,
+                container,
+                false
+            )
         return binding.root
     }
 

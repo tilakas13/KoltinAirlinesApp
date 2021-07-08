@@ -5,10 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.apps.tilak.airlines.common.AppConstants
 import com.apps.tilak.airlines.data.model.AirlineItem
-import com.bumptech.glide.Glide
-import com.tilak.apps.airlines.R
 import com.tilak.apps.airlines.databinding.ItemListAirlineBinding
 
 
@@ -24,12 +21,7 @@ class AirlinesListAdapter(private var listAirlines: List<AirlineItem>) :
 
     override fun onBindViewHolder(holder: AirlinesViewHolder, position: Int) {
         val itemAirlines = listAirlines[position]
-        holder.binding.nameAirlines.text = itemAirlines.defaultName
-        Glide.with(holder.binding.imageAirline.context)
-            .load(AppConstants.BASE_URL + itemAirlines.logoUrl)
-            .centerCrop()
-            .placeholder(R.drawable.default_airline)
-            .into(holder.binding.imageAirline)
+        holder.binding.listItemAirlines = itemAirlines
         holder.binding.containerItemAirline.setOnClickListener { itemView ->
             val actionDetailView =
                 AirlineListFragmentDirections.actionItemClickToDetailAirlineFragment(itemAirlines)

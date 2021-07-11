@@ -8,11 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apps.tilak.airlines.base.BaseFragment
-import com.apps.tilak.airlines.common.AppConstants.LOG_TAG
 import com.apps.tilak.airlines.data.model.AirlineItem
-import com.apps.tilak.airlines.data.network.ApiHelper
-import com.apps.tilak.airlines.data.network.RetrofitBuilder
-import com.apps.tilak.airlines.data.repository.AirlinesRepository
 import com.apps.tilak.airlines.presentation.common.Logger
 import com.apps.tilak.airlines.presentation.ui.utils.Status
 import com.tilak.apps.airlines.databinding.AirlineListFragmentBinding
@@ -24,10 +20,12 @@ class AirlineListFragment : BaseFragment() {
 
     private lateinit var airlineListBinding: AirlineListFragmentBinding
 
-    @Inject
-    lateinit var adapterAirlines: AirlinesListAdapter
+
     private val viewModel: AirlineListViewModel by viewModels()
     private val airlinesList = ArrayList<AirlineItem>()
+
+    @Inject
+    lateinit var adapterAirlines: AirlinesListAdapter
 
     @Inject
     lateinit var logger: Logger
@@ -51,27 +49,26 @@ class AirlineListFragment : BaseFragment() {
         airlineListBinding.recyclerviewAirlines.layoutManager = layoutManager
         airlineListBinding.recyclerviewAirlines.adapter = adapterAirlines
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
-        viewModel.setRepository(AirlinesRepository(ApiHelper(RetrofitBuilder.apiService)))
 
-        viewModel.getListAirlines().observe(viewLifecycleOwner, {
-            it?.let { resource ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        logger.printLog(LOG_TAG, "data loaded")
-                        airlineListBinding.progressBar.visibility = View.GONE
-                        resource.data?.let { users -> retrieveList(users) }
-                    }
-                    Status.ERROR -> {
-                        logger.printLog(LOG_TAG, "Status.ERROR ")
-                        airlineListBinding.progressBar.visibility = View.GONE
-                    }
-                    Status.LOADING -> {
-                        logger.printLog(LOG_TAG, "Status.LOADING")
-                        airlineListBinding.progressBar.visibility = View.VISIBLE
-                    }
+        viewModel.res.observe(viewLifecycleOwner, {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    logger.printLog(TAG, "data loaded")
+                    airlineListBinding.progressBar.visibility = View.GONE
+                    it.data?.let { users -> retrieveList(users) }
                 }
+                Status.ERROR -> {
+                    logger.printLog(TAG, "Status.ERROR ")
+                    airlineListBinding.progressBar.visibility = View.GONE
+                }
+                Status.LOADING -> {
+                    logger.printLog(TAG, "Status.LOADING")
+                    airlineListBinding.progressBar.visibility = View.VISIBLE
+                }
+
             }
         })
+        viewModel.getListAirlines()
     }
 
 
@@ -82,4 +79,7 @@ class AirlineListFragment : BaseFragment() {
         }
     }
 
+    companion object {
+        private const val TAG = "AirlineListFragment"
+    }
 }

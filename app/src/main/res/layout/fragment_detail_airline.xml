@@ -18,6 +18,16 @@
         android:padding="@dimen/spacing_view"
         tools:context="com.apps.tilak.airlines.presentation.ui.detail.DetailAirlineFragment">
 
+        <TextView
+            android:id="@+id/name_airline"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/text_size_list_title"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:fontFamily="@font/adamina"
+            android:text="@{detailAirlines.airlinesName}" />
 
         <ImageView
             android:id="@+id/image_airline"
@@ -25,21 +35,24 @@
             android:layout_height="@dimen/dimen_detail_image"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerInside"
-            app:placeHolder="@{@drawable/default_airline}"
-            app:imageUrl="@{detailAirlines.logoUrl}" />
+            app:imageUrl="@{detailAirlines.logoUrl}"
+            app:placeHolder="@{@drawable/default_airline}" />
+
 
         <TextView
-            android:id="@+id/name_airline"
             android:layout_width="match_parent"
+            android:autoLink="none"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:fontFamily="@font/adamina"
-            android:text="@{detailAirlines.airlinesName}" />
+            android:text="@{detailAirlines.phoneNumber}" />
 
 
         <TextView
-            android:id="@+id/siteurl_airline"
             android:layout_width="match_parent"
+             android:autoLink="web"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
             android:text="@{detailAirlines.siteUrl}" />
     </LinearLayout>
 </layout>

@@ -1,6 +1,8 @@
 package com.apps.tilak.airlines.data.network
 
-class ApiHelper(private val apiService: ApiService) {
+import com.apps.tilak.airlines.data.model.AirlineItem
+import retrofit2.Response
 
-    suspend fun getListAirlines() = apiService.getListAirlines()
+interface ApiHelper {
+    suspend fun getListAirlines(): Response<List<AirlineItem>>
 }

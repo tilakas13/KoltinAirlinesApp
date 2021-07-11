@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_title_list_item">18sp</dimen>
+
     <dimen name="text_size_desc_list_item">14sp</dimen>
     <dimen name="elevation_card_view">5dp</dimen>
     <dimen name="padding_card_item">10dp</dimen>
@@ -10,4 +10,9 @@
     <dimen name="dimen_progress_bar">50dp</dimen>
     <dimen name="spacing_view">20dp</dimen>
     <dimen name="dimen_detail_image">200dp</dimen>
+    <dimen name="text_size_list_title">20sp</dimen>
+    <dimen name="text_size_list_desc">16sp</dimen>
+    <dimen name="spacing_small">5dp</dimen>
+    <dimen name="spacing_medium">10dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
 </resources>

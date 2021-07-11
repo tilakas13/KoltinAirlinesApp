@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -43,12 +44,30 @@
                     android:id="@+id/name_airlines"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+
                     android:layout_toEndOf="@id/image_airline"
-                    android:fontFamily="@font/advent_pro"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="@{listItemAirlines.defaultName}"
-                    android:textSize="@dimen/text_size_title_list_item" />
+                    android:textSize="@dimen/text_size_list_title"
+                    tools:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/phone_airlines"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:layout_below="@id/name_airlines"
+                    android:layout_marginEnd="@dimen/spacing_medium"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_toEndOf="@id/image_airline"
+                    android:fontFamily="sans-serif-thin"
+                    tools:text="@string/app_name"
+                    android:text="@{listItemAirlines.phoneNumber}"
+                    android:textSize="@dimen/text_size_list_desc" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

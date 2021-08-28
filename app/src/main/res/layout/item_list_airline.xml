@@ -51,7 +51,7 @@
                     android:layout_toEndOf="@id/image_airline"
                     android:fontFamily="sans-serif-condensed"
                     android:text="@{listItemAirlines.defaultName}"
-                    android:textSize="@dimen/text_size_list_title"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
                     tools:text="@string/app_name" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:fontFamily="sans-serif-thin"
                     tools:text="@string/app_name"
                     android:text="@{listItemAirlines.phoneNumber}"
-                    android:textSize="@dimen/text_size_list_desc" />
+                    android:textAppearance="?attr/textAppearanceBody1" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

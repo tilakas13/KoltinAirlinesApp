@@ -21,19 +21,19 @@
         <TextView
             android:id="@+id/name_airline"
             android:layout_width="match_parent"
-            android:textSize="@dimen/text_size_list_title"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_marginBottom="@dimen/spacing_medium"
+            android:layout_margin="@dimen/spacing_medium"
             android:fontFamily="@font/adamina"
-            android:text="@{detailAirlines.airlinesName}" />
+            android:gravity="center_horizontal"
+            android:text="@{detailAirlines.airlinesName}"
+            android:textAppearance="?textAppearanceHeadline5" />
 
         <ImageView
             android:id="@+id/image_airline"
             android:layout_width="@dimen/dimen_detail_image"
             android:layout_height="@dimen/dimen_detail_image"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/app_name"
             android:scaleType="centerInside"
             app:imageUrl="@{detailAirlines.logoUrl}"
             app:placeHolder="@{@drawable/default_airline}" />
@@ -41,18 +41,20 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:autoLink="none"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:autoLink="phone"
             android:fontFamily="@font/adamina"
-            android:text="@{detailAirlines.phoneNumber}" />
+            android:text="@{detailAirlines.phoneNumber}"
+            android:textAppearance="?textAppearanceBody2" />
 
 
         <TextView
             android:layout_width="match_parent"
-             android:autoLink="web"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:text="@{detailAirlines.siteUrl}" />
+            android:autoLink="web"
+            android:text="@{detailAirlines.siteUrl}"
+            android:textAppearance="?textAppearanceBody2" />
     </LinearLayout>
 </layout>
